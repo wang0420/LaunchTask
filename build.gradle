@@ -10,7 +10,10 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.1'
-        classpath 'com.novoda:bintray-release:0.9'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+
+        //        classpath 'com.novoda:bintray-release:0.9'
     }
 }
 
@@ -22,14 +25,14 @@ allprojects {
             url "http://maven.aliyun.com/nexus/content/groups/public"
         }
     }
-
+/*
     //开源库中有中文注释,加上这些
     tasks.withType(Javadoc) {
         options{ encoding "UTF-8"
             charSet 'UTF-8'
             links "http://docs.oracle.com/javase/7/docs/api"
         }
-    }
+    }*/
 }
 
 task clean(type: Delete) {
