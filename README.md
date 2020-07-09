@@ -8,7 +8,9 @@ gradlew bintrayUpload
 最后将配置好的线程排序，按顺序分线程执行。
 
 初始化顺序   主线程>需要主线程等待(needWait) > 异步线程
-> implementation 'com.github.wang:launchTask:1.1.0'
+```
+implementation 'com.github.wang:launchTask:1.1.0'
+```
 
       
 
