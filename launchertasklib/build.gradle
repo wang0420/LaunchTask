@@ -1,8 +1,5 @@
 apply plugin: 'com.android.library'
-
-//apply plugin: 'maven'
-//apply plugin: 'com.novoda.bintray-release'
-
+apply from: "../upload_bintray.gradle"
 //添加两个插件
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
@@ -10,6 +7,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 def siteUrl = 'https://github.com/wang0420/LaunchTask'    // 项目的主页
 def gitUrl = 'git@github.com:wang0420/LaunchTask.git'    // Git仓库的url
 def issueUrl = 'https://github.com/wang0420/LaunchTask/issues' // Git仓库issues的url
+//参考 compile 'groupId:artifactId:version'，groupId就是group version上面的版本
+group "com.github.wang"
 version = "1.0.0" //发布版本号
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -61,11 +60,8 @@ install {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging 'aar'
-                //参考 compile 'groupId:artifactId:version'，groupId就是group version上面的版本
-                groupId = "com.github.wang"
+                name 'launchTask' //project.name的属性值建议与project.artifactId一致
                 artifactId 'launchTask'//依赖包最后面的部分
-                name 'Android 开源库'
                 description 'A simple slider allows you to easily use.'
                 url siteUrl
                 // Set your license
@@ -120,14 +116,3 @@ javadoc {
         links "http://docs.oracle.com/javase/7/docs/api"
     }
 }
-
-
-/*publish {
-    userOrg = 'personaldevelopment'// 组织名，前面说了
-    groupId = 'com.github.wang'// 包名（跟bintray里的package不是一回事）
-    artifactId = 'LaunchTask'// library的名字
-    publishVersion  = '1.0.0'// 版本 和前面两者组合起来就是依赖的内容compile 'com.xk:kinject:1.0.0'
-    desc  = 'appLaunchTask库'
-    website = "https://github.com/wang0420/ViewPagerIndicator"//这块我猜是随便写，可能是为了展示你这个项目的地址吧，写github上的地址即可
-    repoName = 'appLaunchTask'//前面说了，repository name
-}*/
