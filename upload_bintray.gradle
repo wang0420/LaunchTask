@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
-
+//上传到Jcenter 相关配置   添加注释的地方都需要修改成自己的数据
 
 def siteUrl = 'https://github.com/wang0420/LaunchTask'    // 项目的主页
 def gitUrl = 'https://github.com/wang0420/LaunchTask.git'    // Git仓库的url
