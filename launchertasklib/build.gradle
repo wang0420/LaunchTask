@@ -10,10 +10,16 @@ apply plugin: 'com.github.dcendents.android-maven'
 def siteUrl = 'https://github.com/wang0420/LaunchTask'      // 项目的主页
 def gitUrl = 'git@github.com:wang0420/LaunchTask.git'   // Git仓库的url
 def issueUrl = 'https://github.com/wang0420/LaunchTask/issues'
-group = "com.github.wang"  // Maven Group ID for the artifact，一般填你唯一的包名
+//这个gruop和artifactId很重要，参考 compile 'groupId:artifactId:version' ，version projectVersionName
+def groupId = "com.github.wang"  // Maven Group ID for the artifact，一般填你唯一的包名
+def artifactIdName = "launchTask"
+def projectVersionName = "1.0.0"
+//这个是显示在bintray 仓库中的项目名字，一般可用项目名称
+def projectName = "LaunchTask"
+
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-version = "1.1.0" //发布版本号
+
 
 android {
     compileSdkVersion 28
@@ -48,7 +54,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"// 你要上传的库的名字  需要和建仓库用的名字一致,即在组下面建立的仓库名称
-        name = "LaunchTask"    //这个是显示在bintray 仓库中的项目名字，一般可用项目名称
+        name = projectName
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         issueTrackerUrl = issueUrl
@@ -65,11 +71,11 @@ install {
         pom {
             project {
                 packaging 'aar'
-                group = "com.github.wang"
-                artifactId 'launchTask'
-                //这个gruop和artifactId很重要，参考 compile 'groupId:artifactId:version' ，version就是顶部那个
+                group groupId
+                artifactId artifactIdName
+                version projectVersionName
                 name 'Android 开源库'   //项目描述
-                description 'A simple slider allows you to easily use.'
+                description 'A android development lib'
                 url siteUrl
                 // Set your license
                 licenses {
