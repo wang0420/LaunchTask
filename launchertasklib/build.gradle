@@ -9,7 +9,7 @@ def gitUrl = 'git@github.com:wang0420/LaunchTask.git'    // Git仓库的url
 def issueUrl = 'https://github.com/wang0420/LaunchTask/issues' // Git仓库issues的url
 //参考 compile 'groupId:artifactId:version'，groupId就是group version上面的版本
 group "com.github.wang"
-version = "1.0.0" //发布版本号
+version = "1.1.0" //发布版本号
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
