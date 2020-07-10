@@ -1,13 +1,16 @@
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
-//上传到Jcenter 相关配置   添加注释的地方都需要修改成自己的数据
+//上传到Jcenter 相关配置   一下配置都需要修改成自己的数据
 
 def siteUrl = 'https://github.com/wang0420/LaunchTask'    // 项目的主页
 def gitUrl = 'https://github.com/wang0420/LaunchTask.git'    // Git仓库的url
 def issueUrl = 'https://github.com/wang0420/LaunchTask/issues' // Git仓库issues的url
-//参考 compile 'groupId:artifactId:version'，groupId就是group version上面的版本
-group "com.github.wang"
-version = "1.1.0" //发布版本号
+//参考 compile 'groupId:artifactId:version'，groupId就是group version下面的版本
+group "com.github.wang" //groupId
+version = "1.2.0" //发布版本号
+def artifactIdName = 'launchTask'//artifactId
+def projectName = 'LaunchTask' //这个是显示在bintray 仓库中的项目名字，一般可用项目名称
+
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
@@ -18,7 +21,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"// 你要上传的库的名字  需要和建仓库用的名字一致,即在组下面建立的仓库名称
-        name = "LaunchTask"    //这个是显示在bintray 仓库中的项目名字，一般可用项目名称
+        name = projectName    //这个是显示在bintray 仓库中的项目名字，一般可用项目名称
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         issueTrackerUrl = issueUrl
@@ -34,9 +37,9 @@ install {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                name 'launchTask' //project.name的属性值建议与project.artifactId一致
-                artifactId 'launchTask'//依赖包最后面的部分
-                description 'A simple slider allows you to easily use.'
+                name artifactIdName //project.name的属性值建议与project.artifactId一致
+                artifactId artifactIdName //依赖包最后面的部分
+                description 'A android lib allows you to easily use.'
                 url siteUrl
                 // Set your license
                 licenses {
