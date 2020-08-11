@@ -1,15 +1,14 @@
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
-//上传到Jcenter 相关配置   一下配置都需要修改成自己的数据
-
-def siteUrl = 'https://github.com/wang0420/LaunchTask'    // 项目的主页
-def gitUrl = 'https://github.com/wang0420/LaunchTask.git'    // Git仓库的url
-def issueUrl = 'https://github.com/wang0420/LaunchTask/issues' // Git仓库issues的url
+//上传到Jcenter 相关配置   以下（#修饰）配置都需要修改成自己的数据
+def siteUrl = 'https://github.com/wang0420/LaunchTask'    // #项目的主页
+def gitUrl = 'https://github.com/wang0420/LaunchTask.git'    // #Git仓库的url
+def issueUrl = 'https://github.com/wang0420/LaunchTask/issues' // #Git仓库issues的url
 //参考 compile 'groupId:artifactId:version'，groupId就是group version下面的版本
 group "com.github.wang" //groupId
-version = "1.2.0" //发布版本号
-def artifactIdName = 'launchTask'//artifactId
-def projectName = 'LaunchTask' //这个是显示在bintray 仓库中的项目名字，一般可用项目名称
+version = "1.3.0" //#发布版本号
+def artifactIdName = 'launchTask'//#artifactId
+def projectName = 'LaunchTask' //#这个是显示在bintray 仓库中的项目名字，一般可用项目名称
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
