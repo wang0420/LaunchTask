@@ -125,13 +125,9 @@ public class TaskDispatcher {
             printDependedMsg();
             mAllTasks = TaskSortUtil.getSortResult(mAllTasks, mClsAllTasks);
             mCountDownLatch = new CountDownLatch(mNeedWaitCount.get());
-
             sendAndExecuteAsyncTasks();
-
-            DispatcherLog.i("task analyse cost " + (System.currentTimeMillis() - mStartTime) + "  begin main ");
             executeTaskMain();
         }
-        DispatcherLog.i("task analyse cost startTime cost " + (System.currentTimeMillis() - mStartTime));
     }
 
     public void cancel() {
@@ -143,12 +139,9 @@ public class TaskDispatcher {
     private void executeTaskMain() {
         mStartTime = System.currentTimeMillis();
         for (Task task : mMainThreadTasks) {
-            long time = System.currentTimeMillis();
             new DispatchRunnable(task,this).run();
-            DispatcherLog.i("real main " + task.getClass().getSimpleName() + " cost   " +
-                    (System.currentTimeMillis() - time));
         }
-        DispatcherLog.i("maintask cost " + (System.currentTimeMillis() - mStartTime));
+        DispatcherLog.i("main task cost time " + (System.currentTimeMillis() - mStartTime));
     }
 
     private void sendAndExecuteAsyncTasks() {
@@ -166,7 +159,6 @@ public class TaskDispatcher {
      * 查看被依赖的信息
      */
     private void printDependedMsg() {
-        DispatcherLog.i("needWait size : " + (mNeedWaitCount.get()));
         if (false) {
             for (Class<? extends Task> cls : mDependedHashMap.keySet()) {
                 DispatcherLog.i("cls " + cls.getSimpleName() + "   " + mDependedHashMap.get(cls).size());
@@ -217,7 +209,7 @@ public class TaskDispatcher {
                 });
             }
         } else {
-            // 直接发，是否执行取决于具体线程池
+            // 非主线程任务 直接发，是否执行取决于具体线程池
             Future future = task.runOn().submit(new DispatchRunnable(task,this));
             mFutures.add(future);
         }

@@ -26,9 +26,6 @@ public class DispatchRunnable implements Runnable {
     @Override
     public void run() {
         TraceCompat.beginSection(mTask.getClass().getSimpleName());
-        DispatcherLog.i(mTask.getClass().getSimpleName()
-                + " begin run" + "  Situation  " + TaskStat.getCurrentSituation());
-
         Process.setThreadPriority(mTask.priority());
 
         long startTime = System.currentTimeMillis();
@@ -63,20 +60,22 @@ public class DispatchRunnable implements Runnable {
         TraceCompat.endSection();
     }
 
+
     /**
      * 打印出来Task执行的日志
      */
     private void printTaskLog(long startTime, long waitTime) {
         long runTime = System.currentTimeMillis() - startTime;
         if (DispatcherLog.isDebug()) {
-            DispatcherLog.i(mTask.getClass().getSimpleName() + "  wait " + waitTime + "    run "
-                    + runTime + "   isMain " + (Looper.getMainLooper() == Looper.myLooper())
-                    + "  needWait " + (mTask.needWait() || (Looper.getMainLooper() == Looper.myLooper()))
-                    + "  ThreadId " + Thread.currentThread().getId()
-                    + "  ThreadName " + Thread.currentThread().getName()
-                    + "  Situation  " + TaskStat.getCurrentSituation()
+            DispatcherLog.i(" init " + mTask.getClass().getSimpleName() + " finish"
+                    + " wait: " + waitTime
+                    + " run: " + runTime
+                    + " isMain: " + (Looper.getMainLooper() == Looper.myLooper())
+                    + " needWait: " + (mTask.needWait())
+                    + " ThreadId: " + Thread.currentThread().getId()
+                    + " ThreadName: " + Thread.currentThread().getName()
+                    + " Situation:  " + TaskStat.getCurrentSituation()
             );
         }
     }
-
 }
