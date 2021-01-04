@@ -34,7 +34,7 @@ public class TaskDispatcher {
     private List<Task> mAllTasks = new ArrayList<>();
     private List<Class<? extends Task>> mClsAllTasks = new ArrayList<>();
     private volatile List<Task> mMainThreadTasks = new ArrayList<>();
-    private CountDownLatch mCountDownLatch;
+    private CountDownLatch mCountDownLatch;//countDownLatch这个类使一个线程等待其他线程各自执行完毕后再执行。
     /**
      * 保存需要Wait的Task的数量
      */
